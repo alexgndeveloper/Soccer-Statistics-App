@@ -12,4 +12,7 @@ export class WebpathService {
   public static LOGIN = 'login';
   // Home
   public static HOME = 'home';
+
+  // Competiciones
+  public static COMPETITIONS = `${environment.apiFootballData}/competitions`;
 }

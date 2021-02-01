@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  // apiDFMLavaderos: 'http://192.168.200.173/LavaderoApi/api'
-  apiDFMLavaderos: 'https://easytechrsawebapi.azurewebsites.net/api'
+  apiFootballData: 'https://api.football-data.org/v2',
+  apiKeyFootballData: '2539762a6f5a4abbb97342969ad4c6fc'
 };

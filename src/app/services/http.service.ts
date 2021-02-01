@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { SystemService } from './system.service';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +14,7 @@ export class HttpService {
   // Headers
   private headersToken: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + this.authSrv.getToken()
+    'X-Auth-Token': environment.apiKeyFootballData
   });
 
   constructor(
@@ -35,7 +37,7 @@ export class HttpService {
       this.systemSrv.showLoader('Cargando ...');
     }
 
-    this.http.post(url, body, headers === true ? { headers: this.newHeaders() } : undefined).subscribe(
+    this.http.post(url, body, headers === true ? { headers: this.headersToken } : undefined).subscribe(
       (response) => {
         if (showLoading) {
           // Oculto Loading
@@ -67,7 +69,7 @@ export class HttpService {
     //   this.systemSrv.showLoader('Cargando ...');
     // }
 
-    this.http.get(url, headers === true ? { headers: this.newHeaders() } : undefined).subscribe(
+    this.http.get(url, headers === true ? { headers: this.headersToken } : undefined).subscribe(
       (response: any) => {
         // if (showLoading) {
         //   // Oculto Loading
@@ -98,7 +100,7 @@ export class HttpService {
     //   this.systemSrv.showLoader('Cargando ...');
     // }
 
-    return this.http.put(url, body, headers === true ? { headers: this.newHeaders() } : undefined).subscribe(
+    return this.http.put(url, body, headers === true ? { headers: this.headersToken } : undefined).subscribe(
       (response) => {
         // if (showLoading) {
         //   // Oculto Loading
@@ -113,19 +115,6 @@ export class HttpService {
         // }
         this.systemSrv.garanticeError(error);
       });
-  }
-
-  /**
-   * Metodo newHeaders. Devuelve el headers con el token actualizado si se ha modificado.
-   */
-  private newHeaders(): HttpHeaders {
-    if (this.headersToken.get('Authorization') !== 'Bearer ' + this.authSrv.getToken()) {
-      this.headersToken = new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.authSrv.getToken()
-      });
-    }
-    return this.headersToken;
   }
 
 }

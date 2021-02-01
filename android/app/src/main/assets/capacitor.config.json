@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "App-Base",
+  "appName": "Soccer-Statistics-App",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

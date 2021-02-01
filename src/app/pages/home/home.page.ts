@@ -14,6 +14,7 @@ import { OptionMenu } from 'src/app/models/option-menu.interface';
 export class HomePage implements OnInit {
 
   public optionsMenu: OptionMenu[] = [];
+  public competitions: any[] = [];
 
   constructor(
     private httpSrv: HttpService,
@@ -25,8 +26,15 @@ export class HomePage implements OnInit {
     console.log('USER', this.authSrv.user);
 
 
-    this.httpSrv.getHttpClient(WebpathService.MENU, (responseOptionsMenu: OptionMenu[]) => {
-      this.optionsMenu = responseOptionsMenu;
+    // this.httpSrv.getHttpClient(WebpathService.MENU, (responseOptionsMenu: OptionMenu[]) => {
+    //   this.optionsMenu = responseOptionsMenu;
+    // }, true, false);
+
+    this.httpSrv.getHttpClient(WebpathService.COMPETITIONS, (response: any) => {
+      this.competitions = response.competitions;
+
+      console.log('COMPETICIONES', this.competitions);
+
     }, true, false);
   }
 

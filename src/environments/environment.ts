@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apiDFMLavaderos: 'https://192.168.200.173/LavaderoApi/api'
-  apiDFMLavaderos: 'http://192.168.200.161/RsaWebAPI/api'
+  apiFootballData: 'https://api.football-data.org/v2',
+  apiKeyFootballData: '2539762a6f5a4abbb97342969ad4c6fc'
 };
 
 /*
