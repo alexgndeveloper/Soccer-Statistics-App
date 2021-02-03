@@ -1,0 +1,75 @@
+<app-header [title]="'Equipos'"></app-header>
+
+<ion-content>
+  <ion-item>
+    <ion-select color="danger" cancelText="Cancelar" interface="action-sheet" mode="ios" placeholder="Selecciona un Equipo"
+      value="notifications" (ionChange)="selectedTeam($event)">
+      <ion-select-option *ngFor="let team of teams" [value]="team.id">
+        {{team.name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="teamStanding !== undefined" text-center>
+    <ion-avatar>
+      <img [src]="teamStanding.team.crestUrl">
+    </ion-avatar>
+    <ion-label>
+      <h2>{{teamStanding.team.name}}</h2>
+    </ion-label>
+  </ion-item>
+
+  <ion-row *ngIf="teamStanding !== undefined">
+    <ion-col></ion-col>
+    <ion-col>PUNTOS</ion-col>
+    <ion-col>PJ</ion-col>
+    <ion-col>PG</ion-col>
+    <ion-col>PE</ion-col>
+    <ion-col>PP</ion-col>
+    <ion-col>GF</ion-col>
+    <ion-col>GC</ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="teamStanding !== undefined">
+    <ion-col>TOTAL</ion-col>
+    <ion-col>{{teamStanding.points}}</ion-col>
+    <ion-col>{{teamStanding.playedGames}}</ion-col>
+    <ion-col>{{teamStanding.won}}</ion-col>
+    <ion-col>{{teamStanding.draw}}</ion-col>
+    <ion-col>{{teamStanding.lost}}</ion-col>
+    <ion-col>{{teamStanding.goalsFor}}</ion-col>
+    <ion-col>{{teamStanding.goalsAgainst}}</ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="teamStandingHome !== undefined">
+    <ion-col>LOCAL</ion-col>
+    <ion-col>{{teamStandingHome.points}}</ion-col>
+    <ion-col>{{teamStandingHome.playedGames}}</ion-col>
+    <ion-col>{{teamStandingHome.won}}</ion-col>
+    <ion-col>{{teamStandingHome.draw}}</ion-col>
+    <ion-col>{{teamStandingHome.lost}}</ion-col>
+    <ion-col>{{teamStandingHome.goalsFor}}</ion-col>
+    <ion-col>{{teamStandingHome.goalsAgainst}}</ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="teamStandingAway !== undefined">
+    <ion-col>FUERA</ion-col>
+    <ion-col>{{teamStandingAway.points}}</ion-col>
+    <ion-col>{{teamStandingAway.playedGames}}</ion-col>
+    <ion-col>{{teamStandingAway.won}}</ion-col>
+    <ion-col>{{teamStandingAway.draw}}</ion-col>
+    <ion-col>{{teamStandingAway.lost}}</ion-col>
+    <ion-col>{{teamStandingAway.goalsFor}}</ion-col>
+    <ion-col>{{teamStandingAway.goalsAgainst}}</ion-col>
+  </ion-row>
+
+  <ion-item>
+    <ion-label>Equipo</ion-label>
+    <ion-select (ionChange)="selectedTeam($event)" mode="ios" value="notifications" interface="action-sheet">
+      <ion-select-option *ngFor="let team of teams" [value]="team.id">
+        {{team.name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+</ion-content>

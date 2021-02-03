@@ -21,7 +21,13 @@ const routes: Routes = [
     path: 'competition',
     loadChildren: () => import('./pages/competition/competition.module').then( m => m.CompetitionPageModule),
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'selected-team/:competitionId',
+    loadChildren: () => import('./pages/selected-team/selected-team.module').then( m => m.SelectedTeamPageModule),
+    canActivate: [AuthGuardService]
   }
+
 
 ];
 

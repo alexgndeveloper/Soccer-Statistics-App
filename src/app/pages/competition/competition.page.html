@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let competition of competitions">
+    <ion-item *ngFor="let competition of competitions" [routerLink]="selectedTeam + competition.id" detail>
       <ion-label>
         <h4>{{competition.name}}</h4>
         <h3>{{competition.area.name}}</h3>

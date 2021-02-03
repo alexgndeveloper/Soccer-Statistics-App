@@ -23,7 +23,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.httpSrv.getHttpClient(WebpathService.MENU, (responseOptionsMenu: OptionMenu[]) => {
       this.optionsMenu = responseOptionsMenu;
-    }, true, false);
+    }, false);
   }
 
 }

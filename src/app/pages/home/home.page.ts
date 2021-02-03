@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { WebpathService } from 'src/app/services/webpath.service';
 
 import { OptionMenu } from 'src/app/models/option-menu.interface';
-import { Competition, CompetitionList } from 'src/app/models/competition.interface';
+import { Competition, CompetitionList } from 'src/app/models/competition';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
     // Cargo el menu
     this.httpSrv.getHttpClient(WebpathService.MENU, (responseOptionsMenu: OptionMenu[]) => {
       this.optionsMenu = responseOptionsMenu;
-    }, true, false);
+    }, false);
   }
 
 }

@@ -63,7 +63,7 @@ export class HttpService {
    * @param headers Si lleva Cabecera la llamada (Si lleva token)
    * @param showLoading Muestra el Loading
    */
-  public getHttpClient(url: string, onSuccess: (response: any) => void, headers: boolean = true, showLoading: boolean = true) {
+  public getHttpClient(url: string, onSuccess: (response: any) => void, showLoading: boolean = true) {
     // TODO Descomento el showLoading de prueba no recuerdo porque estaba comentado
 
     if (showLoading) {
@@ -71,7 +71,7 @@ export class HttpService {
       this.systemSrv.showLoader('Cargando ...');
     }
 
-    this.http.get(url, headers === true ? { headers: this.headersToken } : undefined).subscribe(
+    this.http.get(url, { headers: this.headersToken }).subscribe(
       (response: any) => {
         if (showLoading) {
           // Oculto Loading
@@ -80,6 +80,8 @@ export class HttpService {
         onSuccess(response);
       },
       (error) => {
+        console.log('ERROR --->', error);
+
         if (showLoading) {
           // Oculto Loading
           this.systemSrv.hideLoader();
