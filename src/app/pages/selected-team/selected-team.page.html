@@ -1,8 +1,18 @@
 <app-header [title]="'Equipos'"></app-header>
 
 <ion-content>
+
   <ion-item>
-    <ion-select color="danger" cancelText="Cancelar" interface="action-sheet" mode="ios" placeholder="Selecciona un Equipo"
+    <ion-label>Partidos anteriores</ion-label>
+    <ion-select cancelText="Cancelar" interface="action-sheet" mode="ios" [value]="5" (ionChange)="previousMatches($event)">
+      <ion-select-option [value]="5">5</ion-select-option>
+      <ion-select-option [value]="10">10</ion-select-option>
+      <ion-select-option [value]="">MAX</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-select cancelText="Cancelar" interface="action-sheet" mode="ios" placeholder="Selecciona un Equipo"
       value="notifications" (ionChange)="selectedTeam($event)">
       <ion-select-option *ngFor="let team of teams" [value]="team.id">
         {{team.name}}
@@ -19,9 +29,10 @@
     </ion-label>
   </ion-item>
 
-  <ion-row *ngIf="teamStanding !== undefined">
+  <ion-row *ngIf="teamStanding !== undefined" class="ion-text-center">
     <ion-col></ion-col>
-    <ion-col>PUNTOS</ion-col>
+    <ion-col>POS</ion-col>
+    <ion-col>PUN</ion-col>
     <ion-col>PJ</ion-col>
     <ion-col>PG</ion-col>
     <ion-col>PE</ion-col>
@@ -30,8 +41,11 @@
     <ion-col>GC</ion-col>
   </ion-row>
 
-  <ion-row *ngIf="teamStanding !== undefined">
-    <ion-col>TOTAL</ion-col>
+  <ion-row *ngIf="teamStanding !== undefined" class="ion-text-center">
+    <ion-col>
+      <ion-icon name="globe-outline"></ion-icon>
+    </ion-col>
+    <ion-col>{{teamStanding.position}}</ion-col>
     <ion-col>{{teamStanding.points}}</ion-col>
     <ion-col>{{teamStanding.playedGames}}</ion-col>
     <ion-col>{{teamStanding.won}}</ion-col>
@@ -41,8 +55,11 @@
     <ion-col>{{teamStanding.goalsAgainst}}</ion-col>
   </ion-row>
 
-  <ion-row *ngIf="teamStandingHome !== undefined">
-    <ion-col>LOCAL</ion-col>
+  <ion-row *ngIf="teamStandingHome !== undefined" class="ion-text-center">
+    <ion-col>
+      <ion-icon name="home"></ion-icon>
+    </ion-col>
+    <ion-col>{{teamStandingHome.position}}</ion-col>
     <ion-col>{{teamStandingHome.points}}</ion-col>
     <ion-col>{{teamStandingHome.playedGames}}</ion-col>
     <ion-col>{{teamStandingHome.won}}</ion-col>
@@ -52,8 +69,11 @@
     <ion-col>{{teamStandingHome.goalsAgainst}}</ion-col>
   </ion-row>
 
-  <ion-row *ngIf="teamStandingAway !== undefined">
-    <ion-col>FUERA</ion-col>
+  <ion-row *ngIf="teamStandingAway !== undefined" class="ion-text-center">
+    <ion-col>
+      <ion-icon name="airplane"></ion-icon>
+    </ion-col>
+    <ion-col>{{teamStandingAway.position}}</ion-col>
     <ion-col>{{teamStandingAway.points}}</ion-col>
     <ion-col>{{teamStandingAway.playedGames}}</ion-col>
     <ion-col>{{teamStandingAway.won}}</ion-col>

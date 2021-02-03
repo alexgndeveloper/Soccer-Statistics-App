@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { WebpathService } from 'src/app/services/webpath.service';
 
-import { Competition, CompetitionList } from 'src/app/models/competition';
+import { Competition, CompetitionList, Plan } from 'src/app/models/competition';
 
 @Component({
   selector: 'app-competition',
@@ -11,8 +11,8 @@ import { Competition, CompetitionList } from 'src/app/models/competition';
   styleUrls: ['./competition.page.scss'],
 })
 export class CompetitionPage implements OnInit {
-  // TODO Revisar porque carga mal
 
+  // TODO Revisar porque carga mal
 
   public competitions: Competition[] = [];
   public competitionsBackup: Competition[] = [];
@@ -22,7 +22,7 @@ export class CompetitionPage implements OnInit {
   constructor(private httpSrv: HttpService) { }
 
   ngOnInit() {
-    this.httpSrv.getHttpClient(WebpathService.COMPETITIONS, (competitionList: CompetitionList) => {
+    this.httpSrv.getHttpClient(WebpathService.COMPETITIONS(Plan.TierOne), (competitionList: CompetitionList) => {
       this.competitions = competitionList.competitions;
       this.competitionsBackup = competitionList.competitions;
     }, true);

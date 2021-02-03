@@ -32,6 +32,9 @@ export class SelectedTeamPage implements OnInit {
 
     this.httpSrv.getHttpClient(WebpathService.COMPETITIONS_ID_TEAMS(competitionId), (res) => {
       this.teams = res.teams;
+
+      console.log('EQUIPOS', this.teams);
+
     }, false);
 
     this.httpSrv.getHttpClient(WebpathService.COMPETITIONS_ID_STANDINGS(competitionId), (res: CompetitionStanding) => {
@@ -74,6 +77,11 @@ export class SelectedTeamPage implements OnInit {
         this.teamStandingAway = element;
       }
     });
+  }
+
+  previousMatches(event) {
+    console.log('PREVIOUS_MATCHES', event.detail.value);
+
   }
 
 }

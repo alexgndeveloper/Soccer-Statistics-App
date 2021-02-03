@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
+import { Plan } from '../models/competition';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class WebpathService {
   public static SELECTED_TEAM = '/selected-team/';
 
   // Competiciones
-  public static COMPETITIONS = `${environment.apiFootballData}/competitions`;
+  public static COMPETITIONS(plan: Plan): string { return `${environment.apiFootballData}/competitions?plan=${plan}`; }
   // Equipos de una competicion
   public static COMPETITIONS_ID_TEAMS(id: number): string { return `${environment.apiFootballData}/competitions/${id}/teams`; }
 
