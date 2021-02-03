@@ -16,7 +16,13 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'competition',
+    loadChildren: () => import('./pages/competition/competition.module').then( m => m.CompetitionPageModule),
+    canActivate: [AuthGuardService]
   }
+
 ];
 
 @NgModule({

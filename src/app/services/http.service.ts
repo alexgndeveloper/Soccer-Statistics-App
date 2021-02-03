@@ -64,24 +64,26 @@ export class HttpService {
    * @param showLoading Muestra el Loading
    */
   public getHttpClient(url: string, onSuccess: (response: any) => void, headers: boolean = true, showLoading: boolean = true) {
-    // if (showLoading) {
-    //   // Muestro Loading
-    //   this.systemSrv.showLoader('Cargando ...');
-    // }
+    // TODO Descomento el showLoading de prueba no recuerdo porque estaba comentado
+
+    if (showLoading) {
+      // Muestro Loading
+      this.systemSrv.showLoader('Cargando ...');
+    }
 
     this.http.get(url, headers === true ? { headers: this.headersToken } : undefined).subscribe(
       (response: any) => {
-        // if (showLoading) {
-        //   // Oculto Loading
-        //   this.systemSrv.hideLoader();
-        // }
+        if (showLoading) {
+          // Oculto Loading
+          this.systemSrv.hideLoader();
+        }
         onSuccess(response);
       },
       (error) => {
-        // if (showLoading) {
-        //   // Oculto Loading
-        //   this.systemSrv.hideLoader();
-        // }
+        if (showLoading) {
+          // Oculto Loading
+          this.systemSrv.hideLoader();
+        }
         this.systemSrv.garanticeError(error);
       });
   }
